@@ -1,30 +1,29 @@
-node{
+pipeline {
+  agent any
+  triggers {
+    githubPush()
+  }
+  tools {
+    git 'Default'
+  }
+  environment {
 
-stage('CheckOutCode'){
-git credentialsId: 'f52a7301-4cbc-4389-91fd-0e6ef69c493d', url: 'https://github.com/MithunTechnologiesDevOps/nodejs-app-mss.git'
+  }
+  stages {
+    stage("git_scm") {
+      steps {
+        git credentialsId: 'git_cred', url: 'https://github.com/weirdblackant/nodejs-app-mss.git'
+      }
+    }
+    stage('install_dependencies') {
+      steps {
+        sh "npm install" 
+      }
+    }
+    stage('build_app') {
+      steps {
+	sh "npm start"
+      }
+    }
+  }
 }
-
-stage('Build'){
-nodejs(nodeJSInstallationName: 'nodejs22.40.0'){
-sh "npm install"
-}
-}
-
-stage('ExecuteSonarQubeReport'){
-nodejs(nodeJSInstallationName: 'nodejs22.40.0'){
-sh "npm run sonar"
-}
-}
-
-/*
-stage('UploadArtifactsIntoNexus'){
-sh "npm publish"
-}
-*/
-
-stage('RunNodeJsApp'){
-sh "npm start"
-}
-
-}
-

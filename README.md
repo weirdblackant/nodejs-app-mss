@@ -6,17 +6,19 @@ git clone https://github.com/MithunTechnologiesDevOps/nodejs-app-mss.git
 
 cd nodejs-app-mss
 
-npm install
+- To install all the dependencies for the project, run the below
+	npm install
 
 node app.js 
 
 (OR) 
 
-npm start
+- To start the nodejs application,
+	npm start
 
-To Execute the SonarQube Repor, execute the below command.
+To Execute the SonarQube Report, execute the below command.
 
-npm run sonar
+	npm run sonar
 
 (OR) 
 
