@@ -6,9 +6,6 @@ pipeline {
   tools {
     git 'Default'
   }
-  environment {
-
-  }
   stages {
     stage("git_scm") {
       steps {
